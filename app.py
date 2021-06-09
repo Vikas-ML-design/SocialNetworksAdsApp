@@ -1,6 +1,7 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
+import tensorflow as tf
 
 app = Flask(__name__)
 model = tf.keras.models.load_model(open('saved_model.pb', 'rb'))
