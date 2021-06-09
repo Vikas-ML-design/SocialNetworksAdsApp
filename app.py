@@ -4,7 +4,7 @@ import pickle
 import tensorflow as tf
 
 app = Flask(__name__)
-model = tf.keras.models.load_model(open('saved_model.pb', 'rb'))
+model = tf.keras.models.load_model('CustomerCategory')
 scFeatures = pickle.load(open('CustomerCategoryFeatureMod.ft','rb'))
 
 @app.route('/')
@@ -18,6 +18,7 @@ def predict():
     '''
     age = float(request.form['age'])
     sal = float(request.form['sal'])
+    feature = np.array([[age,sal]])
     stdFeatures = scFeatures.transform(age)
     predLabel = model.predict_classes(stdFeatures)      
 
